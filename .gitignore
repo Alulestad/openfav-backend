@@ -1,9 +1,11 @@
 HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
 ### STS ###
 .apt_generated
@@ -17,14 +19,15 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+### VS Code ###
+.vscode/
+
+### Build Directories ###
+build/
+target/
+
+### Gradle Cache (legacy)
+.gradle
 
 ### NetBeans ###
 /nbproject/private/
@@ -32,6 +35,3 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
-
-### VS Code ###
-.vscode/
