@@ -65,6 +65,11 @@ public class ProyectoServiceImpl implements ProyectoService {
     }
 
     @Override
+    public List<ProyectoDto> getByOng(Integer idOng) {
+        return repo.findByOng_IdOng(idOng).stream().map(ProyectoMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
     public void delete(Integer id) {
         repo.deleteById(id);
     }

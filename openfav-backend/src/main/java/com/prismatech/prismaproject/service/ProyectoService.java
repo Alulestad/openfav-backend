@@ -9,5 +9,6 @@ public interface ProyectoService {
     ProyectoDto update(Integer id, ProyectoDto dto);
     ProyectoDto getById(Integer id);
     List<ProyectoDto> getAll();
+    List<ProyectoDto> getByOng(Integer idOng);
     void delete(Integer id);
 }

@@ -65,6 +65,13 @@ public class ActividadServiceImpl implements ActividadService {
     }
 
     @Override
+    public List<ActividadDto> getByObjetivo(Integer idObjesp) {
+        return repo.findByObjetivoEspecifico_IdObjesp(idObjesp).stream()
+                .map(ActividadMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void delete(Integer id) {
         repo.deleteById(id);
     }

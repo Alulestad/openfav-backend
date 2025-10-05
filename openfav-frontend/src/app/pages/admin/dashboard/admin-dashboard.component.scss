@@ -1,0 +1,54 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #111827;
+}
+
+header p {
+  margin: 0.25rem 0 0;
+  color: #6b7280;
+}
+
+.cards {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+article {
+  background: white;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+article h3 {
+  margin: 0;
+  color: #6b7280;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+article strong {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 2rem;
+  color: #111827;
+}
+
+article ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  color: #374151;
+}
+
+.loading {
+  color: #9ca3af;
+}

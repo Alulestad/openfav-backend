@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/actividades")
+@CrossOrigin(origins = "*")
 public class ActividadController {
     private final ActividadService service;
 
@@ -22,7 +23,10 @@ public class ActividadController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ActividadDto>> all() {
+    public ResponseEntity<List<ActividadDto>> all(@RequestParam(name = "idObjesp", required = false) Integer idObjesp) {
+        if (idObjesp != null) {
+            return ResponseEntity.ok(service.getByObjetivo(idObjesp));
+        }
         return ResponseEntity.ok(service.getAll());
     }
 

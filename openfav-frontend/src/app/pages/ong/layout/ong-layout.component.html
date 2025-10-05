@@ -1,0 +1,17 @@
+<div class="ong-shell">
+  <header>
+    <div>
+      <h2>Panel ONG</h2>
+      <p>{{ session.user()?.email }}</p>
+    </div>
+    <button type="button" (click)="logout()">Salir</button>
+  </header>
+
+  <nav>
+    <a routerLink="/ong/actividades" routerLinkActive="active">Actividades</a>
+  </nav>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

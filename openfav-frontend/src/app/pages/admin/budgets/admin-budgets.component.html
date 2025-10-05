@@ -1,0 +1,109 @@
+<section class="budgets">
+  <header>
+    <h1>Presupuestos y solicitudes</h1>
+    <label>
+      Proyecto
+      <select [(ngModel)]="selectedProjectId" (ngModelChange)="onProjectChange()">
+        <option [ngValue]="null">Selecciona un proyecto</option>
+        <option *ngFor="let project of projects" [ngValue]="project.idProy">{{ project.tituloProy }}</option>
+      </select>
+    </label>
+  </header>
+
+  <div class="layout" *ngIf="selectedProjectId">
+    <section class="budget-editor">
+      <h2>{{ selectedBudgetId ? 'Editar presupuesto' : 'Nuevo presupuesto' }}</h2>
+      <form (ngSubmit)="saveBudget()">
+        <label>
+          Categoría
+          <input name="categoriaPres" [(ngModel)]="budgetForm.categoriaPres" required />
+        </label>
+        <label>
+          Cantidad
+          <input type="number" name="cantidadPres" [(ngModel)]="budgetForm.cantidadPres" />
+        </label>
+        <label>
+          Unidades
+          <input type="number" name="unidadesPres" [(ngModel)]="budgetForm.unidadesPres" />
+        </label>
+        <label>
+          Valor unitario
+          <input type="number" name="valorPres" [(ngModel)]="budgetForm.valorPres" step="0.01" />
+        </label>
+        <button type="submit">Guardar</button>
+      </form>
+    </section>
+
+    <section class="budget-list">
+      <h2>Presupuestos registrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+            <th>Unidades</th>
+            <th>Valor</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let budget of budgets">
+            <td>{{ budget.categoriaPres }}</td>
+            <td>{{ budget.cantidadPres }}</td>
+            <td>{{ budget.unidadesPres }}</td>
+            <td>{{ budget.valorPres | number: '1.0-2' }}</td>
+            <td>
+              <button type="button" (click)="editBudget(budget)">Editar</button>
+              <button type="button" (click)="deleteBudget(budget)">Eliminar</button>
+              <button type="button" (click)="prepareSolicitud(budget)">Registrar solicitud</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <section class="solicitudes" *ngIf="selectedProjectId">
+    <h2>Solicitudes de desembolso</h2>
+    <form (ngSubmit)="saveSolicitud()" class="solicitud-form">
+      <label>
+        Presupuesto vinculado
+        <select [(ngModel)]="solicitudForm.idPres" name="idPres" required>
+          <option [ngValue]="null">Selecciona un presupuesto</option>
+          <option *ngFor="let budget of budgets" [ngValue]="budget.idPres">{{ budget.categoriaPres }}</option>
+        </select>
+      </label>
+      <label>
+        Archivo de solicitud
+        <input type="file" (change)="handleFileSelection($event)" />
+        <span *ngIf="solicitudForm.documentoDescm">{{ solicitudForm.documentoDescm }}</span>
+      </label>
+      <button type="submit">Guardar solicitud</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Documento</th>
+          <th>Estado</th>
+          <th>Presupuesto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let solicitud of solicitudes">
+          <td>{{ solicitud.documentoDescm }}</td>
+          <td>{{ solicitud.estadoDescm }}</td>
+          <td>{{ getBudgetLabel(solicitud.idPres) }}</td>
+          <td>
+            <select [(ngModel)]="solicitud.estadoDescm" (ngModelChange)="updateSolicitudStatus(solicitud, $event)" name="estado-{{ solicitud.idDescm }}">
+              <option value="Enviado">Enviado</option>
+              <option value="Revisando">Revisando</option>
+              <option value="Aprobado">Aprobado</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</section>

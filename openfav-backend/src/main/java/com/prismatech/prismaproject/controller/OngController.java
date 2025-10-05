@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ongs")
+@CrossOrigin(origins = "*")
 public class OngController {
     private final OngService service;
 
