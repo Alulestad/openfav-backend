@@ -19,6 +19,22 @@
       <h3>Actividades activas</h3>
       <strong>{{ metrics.activities }}</strong>
     </article>
+    
+  </div>
+
+  <!-- Chart placed directly under the three main metrics (Proyectos / Presupuesto / Actividades) -->
+  <div class="chart-container">
+    <h3>Crecimiento (últimos 12 meses)</h3>
+    <div style="height:320px">
+      <canvas #growthCanvas></canvas>
+      <!-- fallback simple SVG so user always sees something if Chart.js doesn't initialize -->
+      <svg class="chart-fallback" viewBox="0 0 600 320" preserveAspectRatio="none" style="width:100%;height:100%;display:none;">
+        <polyline points="0,260 60,200 120,220 180,150 240,180 300,140 360,160 420,120 480,130 540,90 600,80" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="cards">
 
     <article>
       <h3>Solicitudes por estado</h3>
@@ -28,6 +44,13 @@
         <li>Aprobado: {{ metrics.solicitudes.aprobado }}</li>
       </ul>
     </article>
+  </div>
+
+  <div class="chart-container">
+    <h3>Crecimiento (últimos 12 meses)</h3>
+    <div style="height:320px">
+      <canvas #growthCanvas></canvas>
+    </div>
   </div>
 
   <p class="loading" *ngIf="loading">Cargando métricas...</p>

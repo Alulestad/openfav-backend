@@ -1,8 +1,11 @@
 <div class="admin-shell">
   <aside class="sidebar">
     <div class="brand">
-      <h2>Panel Admin</h2>
-      <p>{{ session.user()?.email }}</p>
+      <img src="https://fundacionfavorita.org/wp-content/uploads/2023/01/LOGO-FF-NUEVO.png" class="logo"  />
+      <div class="brand-text">
+        <h2>Panel Admin</h2>
+        <p>{{ session.user()?.email }}</p>
+      </div>
     </div>
     <nav>
       <a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>

@@ -1,1 +1,21 @@
+:root {
+	--brand-base: #EF4444; /* requested base color */
+	--brand-base-600: #dc2626;
+	--text-primary: #111827;
+	--muted: #6b7280;
+}
+
+/* Basic helpers */
+.btn-brand {
+	background-color: var(--brand-base);
+	color: #fff;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+}
+
+a {
+	color: var(--brand-base);
+}
+
 /* You can add global styles to this file, and also import other style files */

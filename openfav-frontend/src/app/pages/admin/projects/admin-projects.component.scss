@@ -18,7 +18,7 @@ header button {
   padding: 0.6rem 1.4rem;
   border-radius: 999px;
   border: none;
-  background: #2563eb;
+  background: var(--brand-base-600);
   color: white;
   font-weight: 600;
 }
@@ -58,7 +58,7 @@ aside li {
 }
 
 aside li.active {
-  border: 2px solid #2563eb;
+  border: 2px solid var(--brand-base-600);
 }
 
 aside li button {
@@ -67,7 +67,7 @@ aside li button {
   right: 1rem;
   background: transparent;
   border: none;
-  color: #ef4444;
+  color: var(--brand-base);
   cursor: pointer;
 }
 
@@ -153,5 +153,5 @@ form button[type='submit'] {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  color: #ef4444;
+  color: var(--brand-base);
 }
