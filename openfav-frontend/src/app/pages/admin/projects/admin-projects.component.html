@@ -1,0 +1,100 @@
+<section class="projects">
+  <header>
+    <h1>Gestión de proyectos</h1>
+    <button type="button" (click)="clearProjectSelection()">Nuevo proyecto</button>
+  </header>
+
+  <div class="grid">
+    <aside>
+      <h2>Listado</h2>
+      <ul>
+        <li *ngFor="let project of projects" (click)="editProject(project)" [class.active]="project.idProy === selectedProjectId">
+          <h3>{{ project.tituloProy }}</h3>
+          <p>{{ project.objetivoGeneralProy }}</p>
+          <button type="button" (click)="deleteProject(project); $event.stopPropagation();">Eliminar</button>
+        </li>
+      </ul>
+    </aside>
+
+    <main>
+      <form (ngSubmit)="saveProject()">
+        <h2>{{ selectedProjectId ? 'Editar proyecto' : 'Nuevo proyecto' }}</h2>
+        <div class="form-grid">
+          <label>
+            Título
+            <input name="tituloProy" [(ngModel)]="projectForm.tituloProy" required />
+          </label>
+          <label>
+            ONG
+            <select name="idOng" [(ngModel)]="projectForm.idOng">
+              <option [ngValue]="undefined">Sin asignar</option>
+              <option *ngFor="let ong of ongs" [ngValue]="ong.idOng">{{ ong.nombreOng }}</option>
+            </select>
+          </label>
+          <label>
+            Alcance (personas)
+            <input type="number" name="alcanceProy" [(ngModel)]="projectForm.alcanceProy" />
+          </label>
+          <label>
+            Monto total (texto)
+            <input name="montoTotalProy" [(ngModel)]="projectForm.montoTotalProy" />
+          </label>
+          <label>
+            Plazo total (meses)
+            <input type="number" name="plazoTotalProy" [(ngModel)]="projectForm.plazoTotalProy" />
+          </label>
+          <label>
+            Fecha inicio
+            <input type="date" name="fechaInicioProy" [(ngModel)]="projectForm.fechaInicioProy" />
+          </label>
+          <label>
+            Fecha fin
+            <input type="date" name="fechaFinProy" [(ngModel)]="projectForm.fechaFinProy" />
+          </label>
+          <label class="full">
+            Objetivo general
+            <textarea name="objetivoGeneralProy" rows="3" [(ngModel)]="projectForm.objetivoGeneralProy"></textarea>
+          </label>
+          <label class="full">
+            Ejes
+            <input name="ejesProy" [(ngModel)]="projectForm.ejesProy" />
+          </label>
+          <label class="full">
+            Resultado esperado
+            <textarea name="resultadoProy" rows="3" [(ngModel)]="projectForm.resultadoProy"></textarea>
+          </label>
+        </div>
+        <button type="submit">Guardar</button>
+      </form>
+
+      <section *ngIf="selectedProjectId" class="objectives">
+        <header>
+          <h2>Objetivos específicos</h2>
+          <button type="button" (click)="clearObjectiveSelection()">Nuevo objetivo</button>
+        </header>
+        <div class="objectives-grid">
+          <div>
+            <ul>
+              <li *ngFor="let obj of objectives" (click)="editObjective(obj)" [class.active]="obj.idObjesp === selectedObjectiveId">
+                <h3>{{ obj.objetivoObjesp }}</h3>
+                <p>{{ obj.ejesObjesp }}</p>
+                <button type="button" (click)="deleteObjective(obj); $event.stopPropagation();">Eliminar</button>
+              </li>
+            </ul>
+          </div>
+          <form (ngSubmit)="saveObjective()">
+            <label>
+              Descripción del objetivo
+              <textarea name="objetivoObjesp" rows="3" [(ngModel)]="objectiveForm.objetivoObjesp" required></textarea>
+            </label>
+            <label>
+              Ejes asociados
+              <input name="ejesObjesp" [(ngModel)]="objectiveForm.ejesObjesp" />
+            </label>
+            <button type="submit">Guardar objetivo</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+</section>

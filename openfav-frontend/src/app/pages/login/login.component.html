@@ -1,0 +1,38 @@
+<div class="login-container">
+  <section class="login-card">
+    <h1>OpenFav</h1>
+    <p class="subtitle">Accede con tu usuario asignado.</p>
+
+    <form (ngSubmit)="submit()" #loginForm="ngForm">
+      <label>
+        Usuario
+        <input
+          name="email"
+          [(ngModel)]="model.email"
+          autocomplete="username"
+          placeholder="admin"
+          required
+        />
+      </label>
+
+      <label>
+        Contraseña
+        <input
+          name="password"
+          [(ngModel)]="model.password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="admin"
+          required
+        />
+      </label>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Ingresando...' : 'Ingresar' }}
+      </button>
+    </form>
+
+    <p class="hint">Usuarios disponibles: <strong>admin/admin</strong> y <strong>ong/ong</strong>.</p>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </section>
+</div>

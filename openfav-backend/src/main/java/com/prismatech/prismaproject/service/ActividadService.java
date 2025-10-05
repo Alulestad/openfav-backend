@@ -9,5 +9,6 @@ public interface ActividadService {
     ActividadDto update(Integer id, ActividadDto dto);
     ActividadDto getById(Integer id);
     List<ActividadDto> getAll();
+    List<ActividadDto> getByObjetivo(Integer idObjesp);
     void delete(Integer id);
 }

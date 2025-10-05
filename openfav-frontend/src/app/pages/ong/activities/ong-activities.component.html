@@ -1,0 +1,110 @@
+<section class="activities">
+  <header>
+    <div>
+      <h1>Actividades de proyectos</h1>
+      <p>Gestiona objetivos específicos y actividades asociadas.</p>
+    </div>
+    <div class="selectors">
+      <label>
+        Proyecto
+        <select [(ngModel)]="selectedProjectId" (ngModelChange)="onProjectChange()">
+          <option [ngValue]="null">Selecciona un proyecto</option>
+          <option *ngFor="let project of projects" [ngValue]="project.idProy">{{ project.tituloProy }}</option>
+        </select>
+      </label>
+      <label>
+        Objetivo
+        <select [(ngModel)]="selectedObjectiveId" (ngModelChange)="onObjectiveChange()">
+          <option [ngValue]="null">Selecciona un objetivo</option>
+          <option *ngFor="let objective of objectives" [ngValue]="objective.idObjesp">{{ objective.objetivoObjesp }}</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <section class="objective-editor">
+    <h2>{{ objectiveForm.idObjesp ? 'Editar objetivo específico' : 'Nuevo objetivo específico' }}</h2>
+    <form (ngSubmit)="saveObjective()">
+      <label>
+        Descripción
+        <textarea name="objetivoObjesp" rows="3" [(ngModel)]="objectiveForm.objetivoObjesp" required></textarea>
+      </label>
+      <label>
+        Ejes
+        <input name="ejesObjesp" [(ngModel)]="objectiveForm.ejesObjesp" />
+      </label>
+      <div class="actions">
+        <button type="submit">Guardar objetivo</button>
+        <button type="button" (click)="resetObjectiveForm()">Limpiar</button>
+      </div>
+    </form>
+    <ul class="objective-list">
+      <li *ngFor="let objective of objectives">
+        <h3>{{ objective.objetivoObjesp }}</h3>
+        <p>{{ objective.ejesObjesp }}</p>
+        <div>
+          <button type="button" (click)="editObjective(objective)">Editar</button>
+          <button type="button" (click)="deleteObjective(objective)">Eliminar</button>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="activity-editor" *ngIf="selectedObjectiveId">
+    <h2>{{ selectedActivityId ? 'Editar actividad' : 'Nueva actividad' }}</h2>
+    <form (ngSubmit)="saveActivity()">
+      <label>
+        Nombre
+        <input name="nombreActi" [(ngModel)]="activityForm.nombreActi" required />
+      </label>
+      <label>
+        Descripción
+        <textarea name="descripcionActi" rows="3" [(ngModel)]="activityForm.descripcionActi"></textarea>
+      </label>
+      <div class="inline">
+        <label>
+          Resultado esperado
+          <input type="number" name="resultadoEsperadoActi" [(ngModel)]="activityForm.resultadoEsperadoActi" step="0.01" />
+        </label>
+        <label>
+          Resultado obtenido
+          <input type="number" name="resultadoObtenido" [(ngModel)]="activityForm.resultadoObtenido" step="0.01" />
+        </label>
+        <label>
+          Categoría
+          <input name="categoria" [(ngModel)]="activityForm.categoria" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="submit">Guardar actividad</button>
+        <button type="button" (click)="resetActivityForm()">Limpiar</button>
+      </div>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Esperado</th>
+          <th>Obtenido</th>
+          <th>Categoría</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activity of activities">
+          <td>{{ activity.nombreActi }}</td>
+          <td>{{ activity.descripcionActi }}</td>
+          <td>{{ activity.resultadoEsperadoActi }}</td>
+          <td>{{ activity.resultadoObtenido }}</td>
+          <td>{{ activity.categoria }}</td>
+          <td>
+            <button type="button" (click)="editActivity(activity)">Editar</button>
+            <button type="button" (click)="deleteActivity(activity)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</section>

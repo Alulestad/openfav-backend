@@ -1,0 +1,34 @@
+<section class="dashboard">
+  <header>
+    <h1>Resumen general</h1>
+    <p>Indicadores rápidos del ecosistema de proyectos.</p>
+  </header>
+
+  <div class="cards">
+    <article>
+      <h3>Proyectos registrados</h3>
+      <strong>{{ metrics.projects }}</strong>
+    </article>
+
+    <article>
+      <h3>Presupuesto total (USD)</h3>
+      <strong>{{ metrics.totalBudget | number: '1.0-2' }}</strong>
+    </article>
+
+    <article>
+      <h3>Actividades activas</h3>
+      <strong>{{ metrics.activities }}</strong>
+    </article>
+
+    <article>
+      <h3>Solicitudes por estado</h3>
+      <ul>
+        <li>Enviado: {{ metrics.solicitudes.enviado }}</li>
+        <li>Revisando: {{ metrics.solicitudes.revisando }}</li>
+        <li>Aprobado: {{ metrics.solicitudes.aprobado }}</li>
+      </ul>
+    </article>
+  </div>
+
+  <p class="loading" *ngIf="loading">Cargando métricas...</p>
+</section>
