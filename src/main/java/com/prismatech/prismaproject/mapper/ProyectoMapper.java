@@ -2,12 +2,14 @@ package com.prismatech.prismaproject.mapper;
 
 import com.prismatech.prismaproject.dto.ProyectoDto;
 import com.prismatech.prismaproject.model.Proyecto;
+import com.prismatech.prismaproject.model.Ong;
 
 public class ProyectoMapper {
     public static ProyectoDto toDto(Proyecto p) {
         if (p == null) return null;
         ProyectoDto d = new ProyectoDto();
         d.setIdProy(p.getIdProy());
+        if (p.getOng() != null) d.setIdOng(p.getOng().getIdOng());
         d.setTituloProy(p.getTituloProy());
         d.setObjetivoGeneralProy(p.getObjetivoGeneralProy());
         d.setAlcanceProy(p.getAlcanceProy());
@@ -24,6 +26,11 @@ public class ProyectoMapper {
         if (d == null) return null;
         Proyecto p = new Proyecto();
         p.setIdProy(d.getIdProy());
+        if (d.getIdOng() != null) {
+            Ong o = new Ong();
+            o.setIdOng(d.getIdOng());
+            p.setOng(o);
+        }
         p.setTituloProy(d.getTituloProy());
         p.setObjetivoGeneralProy(d.getObjetivoGeneralProy());
         p.setAlcanceProy(d.getAlcanceProy());

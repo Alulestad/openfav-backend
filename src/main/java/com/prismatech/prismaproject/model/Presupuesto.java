@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 public class Presupuesto {
     @Id
     @Column(name = "ID_PRES")
+    @SequenceGenerator(name = "pres_seq", sequenceName = "seq_pres_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pres_seq")
     private Integer idPres;
 
     @Column(name = "CATEGORIA_PRES")

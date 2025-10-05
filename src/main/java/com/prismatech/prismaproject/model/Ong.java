@@ -11,6 +11,8 @@ import lombok.*;
 public class Ong {
     @Id
     @Column(name = "ID_ONG")
+    @SequenceGenerator(name = "ong_seq", sequenceName = "seq_ong_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ong_seq")
     private Integer idOng;
 
     @Column(name = "NOMBRE_ONG")
@@ -29,5 +31,5 @@ public class Ong {
     private String direccionOng;
 
     @OneToMany(mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
-    private java.util.List<Relacion> relaciones;
+    private java.util.List<Proyecto> proyectos;
 }

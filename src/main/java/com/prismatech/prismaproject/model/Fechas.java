@@ -13,6 +13,8 @@ import java.time.LocalDate;
 public class Fechas {
     @Id
     @Column(name = "ID_FECH")
+    @SequenceGenerator(name = "fechas_seq", sequenceName = "seq_fechas_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fechas_seq")
     private Integer idFech;
 
     @Column(name = "FECHA_INICIO_FECH")

@@ -14,6 +14,8 @@ import java.util.List;
 public class Actividad {
     @Id
     @Column(name = "ID_ACTI")
+    @SequenceGenerator(name = "actividad_seq", sequenceName = "seq_actividad_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "actividad_seq")
     private Integer idActi;
 
     @Column(name = "NOMBRE_ACTI")

@@ -13,6 +13,8 @@ import java.util.List;
 public class ObjetivosEspecificos {
     @Id
     @Column(name = "ID_OBJESP")
+    @SequenceGenerator(name = "objesp_seq", sequenceName = "seq_objesp_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "objesp_seq")
     private Integer idObjesp;
 
     @Column(name = "OBJETIVO_OBJESP")

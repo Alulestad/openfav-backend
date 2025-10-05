@@ -11,6 +11,8 @@ import lombok.*;
 public class SolicitudDesembolso {
     @Id
     @Column(name = "ID_DESCM")
+    @SequenceGenerator(name = "descm_seq", sequenceName = "seq_descm_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "descm_seq")
     private Integer idDescm;
 
     @Column(name = "DOCUMENTO_DESCM")

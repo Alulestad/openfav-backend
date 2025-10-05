@@ -14,7 +14,8 @@ import java.util.List;
 public class Proyecto {
     @Id
     @Column(name = "ID_PROY")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "proy_seq", sequenceName = "seq_proy_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "proy_seq")
     private Integer idProy;
 
     @Column(name = "TITULO_PROY")
@@ -50,6 +51,7 @@ public class Proyecto {
     @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Presupuesto> presupuestos;
 
-    @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Relacion> relaciones;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_ONG")
+    private Ong ong;
 }

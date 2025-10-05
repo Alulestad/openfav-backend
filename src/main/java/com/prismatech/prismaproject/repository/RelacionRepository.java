@@ -1,8 +1,4 @@
-package com.prismatech.prismaproject.repository;
+// RelacionRepository removed: the relationship between ONG and PROYECTO
+// was changed to a direct OneToMany/ManyToOne. This file intentionally
+// left blank to avoid compilation errors until all references are removed.
 
-import com.prismatech.prismaproject.model.Relacion;
-import com.prismatech.prismaproject.model.Relacion.RelacionId;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface RelacionRepository extends JpaRepository<Relacion, RelacionId> {
-}

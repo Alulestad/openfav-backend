@@ -11,6 +11,8 @@ import lombok.*;
 public class Kpi {
     @Id
     @Column(name = "ID_KPI")
+    @SequenceGenerator(name = "kpi_seq", sequenceName = "seq_kpi_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "kpi_seq")
     private Integer idKpi;
 
     @Column(name = "VALOR_KPI")

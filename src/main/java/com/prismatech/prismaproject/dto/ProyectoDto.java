@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Data
 public class ProyectoDto {
     private Integer idProy;
+    private Integer idOng;
     private String tituloProy;
     private String objetivoGeneralProy;
     private Integer alcanceProy;
